@@ -1,0 +1,14 @@
+name: npm build + test
+on:
+  workflow_dispatch: # enables "Run workflow" button
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20.x' # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+          cache: 'npm'
+      - run: npm ci
+      - run: npm test
