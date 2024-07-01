@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import {Component} from '@angular/core';
+import {RouterOutlet} from '@angular/router';
+import PSPDFKit from "pspdfkit";
 
 @Component({
   selector: 'app-root',
@@ -9,5 +10,20 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'pspdfkit-angular-oom-demo';
+  title = 'PSPDFKit for Web Angular Example';
+
+  ngAfterViewInit(): void {
+    PSPDFKit.load({
+      // Use the assets directory URL as a base URL. PSPDFKit will download its library assets from here.
+      baseUrl: location.protocol + "//" + location.host + "/assets/",
+      document: "https://upload.wikimedia.org/wikipedia/commons/d/d3/Test.pdf",
+      container: ".pspdfkit-container"
+    }).then((instance) => {
+      // For the sake of this demo, store the PSPDFKit for Web instance
+      // on the global object so that you can open the dev tools and
+      // play with the PSPDFKit API.
+
+      (<any>window).instance = instance;
+    });
+  }
 }
