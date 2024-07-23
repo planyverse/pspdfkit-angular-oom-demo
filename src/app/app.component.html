@@ -1,7 +1,10 @@
+<div class="annotation-controls">
+  <button (click)="setAnnotationsVisibility(true)">Show Annotations</button>
+  <button (click)="setAnnotationsVisibility(false)">Hide Annotations</button>
+  <span>annotations should be visible? {{ annotationsVisible }}</span>
+</div>
 <div class="app">
   <div class="toolbar">
-    <img class="logo" src="/favicon.ico" height="32" />
-
     PSPDFKit Angular Application
   </div>
 
